@@ -11,14 +11,14 @@ public class Chapter10 {
 		list.add(new Task(LocalDate.of(2021, 11, 9), "スクールの課題を解く", false));
 
 		// 未完了のタスクをカウント
-		long incompleteCount = list.stream().filter(task -> !task.isDone()).count();
+		long incompleteCount = list.stream().filter(task -> !task.isDone()) // 未完了のタスクをフィルタ
+				.count();
 		System.out.println("未完了のタスクの個数は" + incompleteCount);
 
 		// 未完了のタスクを日時の昇順に並び替えて表示
-		java.util.List<Task> incompleteTasksSorted = list.stream().filter(task -> !task.isDone()).sorted()
-				.collect(java.util.stream.Collectors.toList());
-
 		System.out.println("【未完了のタスクを昇順に並び替えて一覧表示】");
-		incompleteTasksSorted.forEach(System.out::println);
+		list.stream().filter(task -> !task.isDone()) // 未完了のタスクをフィルタ
+				.sorted() // 日付順にソート
+				.forEach(System.out::println); // タスクを順に表示
 	}
 }
